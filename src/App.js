@@ -7,6 +7,7 @@ import '@fontsource/roboto/700.css';
 import { ThemeProvider } from '@mui/material';
 
 import Navbar from './components/Navbar';
+import MovieList from './containers/MovieList';
 import theme from './themes/theme';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Navbar></Navbar>
+        <MovieList></MovieList>
       </div>
     </ThemeProvider>
   );
