@@ -1,11 +1,20 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 import MovieCard from '../components/MovieCard';
-import fetchedMovies from '../data/fetchedMovies.json';
 
 const MovieList = () => {
-    const [movies, setMovies] = useState(fetchedMovies.results);
+    const [movies, setMovies] = useState([]);
+
+    useEffect(() => {
+        const fetchMovies = async () => {
+            const fetchedMovies = await axios.get("https://api.themoviedb.org/3/trending/movie/week?api_key=");
+            setMovies(fetchedMovies.data.results);
+        }
+        
+        fetchMovies();
+    }, []);
 
     return (
         <Box sx={{
