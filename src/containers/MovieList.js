@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+import tmdb from '../apis/tmdb';
 import MovieCard from '../components/MovieCard';
 
 const MovieList = () => {
@@ -9,10 +9,14 @@ const MovieList = () => {
 
     useEffect(() => {
         const fetchMovies = async () => {
-            const fetchedMovies = await axios.get("https://api.themoviedb.org/3/trending/movie/week?api_key=");
-            setMovies(fetchedMovies.data.results);
+            try {
+                const fetchedMovies = await tmdb.get("trending/movie/week");
+                setMovies(fetchedMovies.data.results);
+            } catch (error) {
+                console.log(error);
+            }
         }
-        
+
         fetchMovies();
     }, []);
 
