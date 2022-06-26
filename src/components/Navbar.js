@@ -11,7 +11,7 @@ const navItems = ['Indonesian', 'Pricing', 'About'];
 const Navbar = () => {
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar component="nav">
+      <AppBar>
         <Toolbar>
           <MovieFilter sx={{ display: 'flex', mr: 1 }} />
           <Typography

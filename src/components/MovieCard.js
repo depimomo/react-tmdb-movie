@@ -31,7 +31,7 @@ const MovieCard = ({ movie }) => {
             }}
           >
             <Rating name="read-only" precision={0.1} value={movie.vote_average / 2} max={5} readOnly />
-            <Box sx={{ ml: 2 }}>{movie.vote_average}</Box>
+            <Box sx={{ ml: 2 }}>{movie.vote_average.toFixed(1)}</Box>
           </Box>
         </CardContent>
       </Box>
