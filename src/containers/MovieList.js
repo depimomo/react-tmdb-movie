@@ -25,7 +25,8 @@ const MovieList = () => {
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            mt: 5,
         }}>
             {
                 movies.map(movie => (
