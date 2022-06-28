@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const createData = (feature, bronze, gold, platinum) => {
     return { feature, bronze, gold, platinum };
@@ -21,6 +22,14 @@ const rows = [
 ];
 
 const Pricing = () => {
+    let navigate = useNavigate();
+
+    const onSubscribed = () => {
+        // subscription logic here
+        // navigate to success page
+        navigate('/subscribed');
+    }
+
     return (
         <Box sx={{
             display: 'flex',
@@ -69,13 +78,19 @@ const Pricing = () => {
                         <TableRow>
                             <TableCell></TableCell>
                             <TableCell align="center">
-                                <Button variant="contained">Buy now</Button>
+                                <Button variant="contained" onClick={onSubscribed}>
+                                    Buy now
+                                </Button>
                             </TableCell>
                             <TableCell align="center">
-                                <Button variant="contained">Buy now</Button>
+                                <Button variant="contained" onClick={onSubscribed}>
+                                    Buy now
+                                </Button>
                             </TableCell>
                             <TableCell align="center">
-                                <Button variant="contained">Buy now</Button>
+                                <Button variant="contained" onClick={onSubscribed}>
+                                    Buy now
+                                </Button>
                             </TableCell>
                         </TableRow>
                     </TableFooter>
