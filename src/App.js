@@ -23,7 +23,7 @@ const App = () => {
           <Route path="about" element={<Box sx={{ mt: 10 }}>Halaman about</Box>} />
           <Route path="indonesian" element={<Box sx={{ mt: 10 }}>Halaman indonesian</Box>} />
           <Route path="pricing" element={<Pricing />} />
-          <Route path="subscribed" element={<Subscribed />} />
+          <Route path="subscribed/:plan" element={<Subscribed />} />
         </Routes>
       </div>
     </ThemeProvider>
