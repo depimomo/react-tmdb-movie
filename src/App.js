@@ -4,7 +4,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import { ThemeProvider } from '@mui/material';
+import { Box, ThemeProvider } from '@mui/material';
+import { Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import MovieList from './containers/MovieList';
@@ -15,7 +16,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <div className="App">
         <Navbar></Navbar>
-        <MovieList></MovieList>
+        <Routes>
+          <Route path="/" element={<MovieList />} />
+          <Route path="about" element={<Box sx={{ mt: 10 }}>Halaman about</Box>} />
+          <Route path="indonesian" element={<Box sx={{ mt: 10 }}>Halaman indonesian</Box>} />
+          <Route path="pricing" element={<Box sx={{ mt: 10 }}>Halaman pricing</Box>} />
+        </Routes>
       </div>
     </ThemeProvider>
   );

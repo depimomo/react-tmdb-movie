@@ -12,3 +12,17 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.nav-inactive {
+  color: white;
+  padding: 10px;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.nav-active {
+  color: white;
+  padding: 10px;
+  letter-spacing: 1px;
+  text-underline-offset: 5px;
+}
