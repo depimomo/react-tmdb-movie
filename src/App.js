@@ -10,6 +10,7 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import MovieList from './containers/MovieList';
 import Pricing from './containers/Pricing';
+import Subscribed from './containers/Subscribed';
 import theme from './themes/theme';
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
           <Route path="about" element={<Box sx={{ mt: 10 }}>Halaman about</Box>} />
           <Route path="indonesian" element={<Box sx={{ mt: 10 }}>Halaman indonesian</Box>} />
           <Route path="pricing" element={<Pricing />} />
-          <Route path="subscribed" element={<Box sx={{ mt: 10 }}>Thank you for subscribing!</Box>} />
+          <Route path="subscribed" element={<Subscribed />} />
         </Routes>
       </div>
     </ThemeProvider>
