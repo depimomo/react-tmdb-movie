@@ -9,6 +9,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import MovieList from './containers/MovieList';
+import Pricing from './containers/Pricing';
 import theme from './themes/theme';
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
           <Route path="/" element={<MovieList />} />
           <Route path="about" element={<Box sx={{ mt: 10 }}>Halaman about</Box>} />
           <Route path="indonesian" element={<Box sx={{ mt: 10 }}>Halaman indonesian</Box>} />
-          <Route path="pricing" element={<Box sx={{ mt: 10 }}>Halaman pricing</Box>} />
+          <Route path="pricing" element={<Pricing />} />
         </Routes>
       </div>
     </ThemeProvider>
