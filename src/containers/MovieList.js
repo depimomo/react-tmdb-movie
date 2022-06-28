@@ -22,6 +22,22 @@ const MovieList = () => {
         fetchMovies();
     }, []);
 
+    useEffect(() => {
+        const sortMovies = (type) => {
+            if (type === 'asc') {
+                const sorted = movies.sort((a, b) => a.vote_average - b.vote_average);
+                setMovies(sorted);
+            }
+            if (type === 'desc') {
+                const sorted = movies.sort((a, b) => b.vote_average - a.vote_average);
+                setMovies(sorted);
+            }
+        }
+
+        sortMovies(queryParams.get('sort'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [queryParams]);
+
     const setSortParam = (type) => {
         queryParams.set("sort", type);
         setQueryParams(queryParams);
