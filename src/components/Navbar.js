@@ -36,6 +36,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <NavLink
                 to={item.link}
+                key={item.text}
                 className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'}
               >
                 {item.text}
