@@ -5,7 +5,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import { Box, ThemeProvider } from '@mui/material';
-import { Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import About from './containers/About';
@@ -28,6 +28,25 @@ const App = () => {
           <Route path="indonesian" element={<Box sx={{ mt: 10 }}>Halaman indonesian</Box>} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="subscribed/:plan" element={<Subscribed />} />
+          <Route
+            path="*"
+            element={
+              <Box sx={{
+                display: 'flex', 
+                margin: 10, 
+                justifyContent: 'center',
+                alignItems: 'center', 
+                flexDirection: 'column',
+              }}>
+                <img
+                  src="https://cdn3d.iconscout.com/3d/premium/thumb/404-error-4461124-3696774.png"
+                  alt="404"
+                />
+                <p>You have reach the edge of universe</p>
+                <Link to="/">Take me home!</Link>
+              </Box>
+            }
+          />
         </Routes>
       </div>
     </ThemeProvider>
