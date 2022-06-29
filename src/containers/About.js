@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const About = () => {
     return (
@@ -14,6 +14,7 @@ const About = () => {
             </Typography>
             <Link to="description">Description</Link>
             <Link to="services">Services</Link>
+            <Outlet/>
         </Box>
     )
 }

@@ -21,7 +21,10 @@ const App = () => {
         <Navbar></Navbar>
         <Routes>
           <Route path="/" element={<MovieList />} />
-          <Route path="about" element={<About />} />
+          <Route path="about" element={<About />}>
+            <Route path="description" element={<Box sx={{ mt: 10 }}>Provides movies in your hand</Box>} />
+            <Route path="services" element={<Box sx={{ mt: 10 }}>Streaming movies, Indonesian film, and film review.</Box>} />
+          </Route>
           <Route path="indonesian" element={<Box sx={{ mt: 10 }}>Halaman indonesian</Box>} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="subscribed/:plan" element={<Subscribed />} />
