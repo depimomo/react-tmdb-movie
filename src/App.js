@@ -9,8 +9,10 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import About from './containers/About';
+import Login from './containers/Login';
 import MovieList from './containers/MovieList';
 import Pricing from './containers/Pricing';
+import Register from './containers/Register';
 import Subscribed from './containers/Subscribed';
 import theme from './themes/theme';
 
@@ -21,6 +23,8 @@ const App = () => {
         <Navbar></Navbar>
         <Routes>
           <Route path="/" element={<MovieList />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
           <Route path="about" element={<About />}>
             <Route path="description" element={<Box sx={{ mt: 10 }}>Provides movies in your hand</Box>} />
             <Route path="services" element={<Box sx={{ mt: 10 }}>Streaming movies, Indonesian film, and film review.</Box>} />
@@ -32,10 +36,10 @@ const App = () => {
             path="*"
             element={
               <Box sx={{
-                display: 'flex', 
-                margin: 10, 
+                display: 'flex',
+                margin: 10,
                 justifyContent: 'center',
-                alignItems: 'center', 
+                alignItems: 'center',
                 flexDirection: 'column',
               }}>
                 <img
