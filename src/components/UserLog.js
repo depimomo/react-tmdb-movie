@@ -6,14 +6,20 @@ const UserLog = ({ isLoggedIn }) => {
     <>
       <NavLink to={'/profile'} key={'profile'}
         className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'}
-      > Profile </NavLink >
+      >
+        Profile
+      </NavLink >
       <NavLink to={'/logout'} key={'logout'}
         className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'}
-      > Logout </NavLink >
+      >
+        Logout
+      </NavLink >
     </> :
     <NavLink to={'/login'} key={'login'}
       className={({ isActive }) => isActive ? 'nav-active' : 'nav-inactive'}
-    > Login </NavLink>)
+    >
+      Login
+    </NavLink>)
 }
 
 export default UserLog
