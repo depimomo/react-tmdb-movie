@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-const BASE_IMAGE_URL = "http://image.tmdb.org/t/p/original";
+const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original";
 
 const MovieCard = ({ movie }) => {
   return (
