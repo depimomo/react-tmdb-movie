@@ -44,7 +44,7 @@ const Navbar = () => {
                 {item.text}
               </NavLink>
             ))}
-            <UserLog isLoggedIn={false} />
+            <UserLog />
           </Box>
         </Toolbar>
       </AppBar>

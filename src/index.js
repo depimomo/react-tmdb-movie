@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import App from './App';
+import PrivateComponent from './components/PrivateComponent';
 import About from './containers/About';
 import Login from './containers/Login';
 import MovieList from './containers/MovieList';
@@ -19,7 +20,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}>
+        <Route path="/" element={
+          <PrivateComponent>
+            <App />
+          </PrivateComponent>
+        }>
           <Route path="/" element={<MovieList />} />
           <Route path="about" element={<About />}>
             <Route path="description" element={<Box sx={{ mt: 10 }}>Provides movies in your hand</Box>} />
@@ -29,8 +34,14 @@ root.render(
           <Route path="pricing" element={<Pricing />} />
           <Route path="subscribed/:plan" element={<Subscribed />} />
         </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route path="login" element={
+          <PrivateComponent loginOnly={false}>
+            <Login />
+          </PrivateComponent>} />
+        <Route path="register" element={
+          <PrivateComponent loginOnly={false}>
+            <Register />
+          </PrivateComponent>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

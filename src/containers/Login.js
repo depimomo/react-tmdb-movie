@@ -6,17 +6,28 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { auth } from '../config/firebase';
 
 const Login = () => {
-    const handleSubmit = (event) => {
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = React.useState('');
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const email = data.get('email');
+        const password = data.get('password');
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate("/");
+        } catch (error) {
+            setErrorMessage(error.message);
+        }
     };
 
     return (
@@ -56,6 +67,7 @@ const Login = () => {
                         id="password"
                         autoComplete="current-password"
                     />
+                    <Typography color='red'>{errorMessage}</Typography>
                     <Button
                         type="submit"
                         fullWidth
