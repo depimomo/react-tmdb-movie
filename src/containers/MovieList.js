@@ -107,6 +107,7 @@ const MovieList = () => {
                 >
                     Load More
                 </Button>
+            <div>Created by orang</div>
         </Box>
     );
 }
