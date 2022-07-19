@@ -40,9 +40,22 @@ const MovieList = () => {
         sortMovies(queryParams.get('sort'));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [queryParams, moviesReady]);
+    
+    useEffect(() => {
+        const nextPage = queryParams.get('page');
+        console.log(nextPage);
+
+        //ada logic untuk ngefetch movies dengan page=2
+        //ada logic untuk update statenya dengan movies berikutnya
+    }, [queryParams]);
 
     const setSortParam = (type) => {
         queryParams.set("sort", type);
+        setQueryParams(queryParams);
+    }
+    
+    const setNextPage = (page) => {
+        queryParams.set("page", page);
         setQueryParams(queryParams);
     }
 
@@ -87,7 +100,14 @@ const MovieList = () => {
                     ))
                 }
             </Box>
-            <div>Created by siapa</div>
+            <Button
+                    variant="contained"
+                    sx={{ ml: 2, mr: 2 }}
+                    onClick={() => setNextPage("2")}
+                >
+                    Load More
+                </Button>
+            <div>Created by orang</div>
         </Box>
     );
 }
