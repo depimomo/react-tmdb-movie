@@ -87,6 +87,7 @@ const MovieList = () => {
                     ))
                 }
             </Box>
+            <div>Created by siapa</div>
         </Box>
     );
 }
