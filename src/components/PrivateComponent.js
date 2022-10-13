@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { auth } from '../config/firebase';
 

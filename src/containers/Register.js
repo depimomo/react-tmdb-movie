@@ -6,28 +6,26 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { auth } from '../config/firebase';
+import useUserStore, { selectErrorRegister, selectOnRegister, selectUserReady } from '../store/user';
 
 const Register = () => {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState('')
+    const onRegister = useUserStore(selectOnRegister);
+    const userReady = useUserStore(selectUserReady);
+    const errorRegister = useUserStore(selectErrorRegister);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const email = data.get('email');
         const password = data.get('password');
-        
-        try {
-            const { user } = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(user);
+
+        await onRegister(email, password);
+
+        if (userReady) {
             navigate("/");
-        } catch (error) {
-            setErrorMessage(error.message);
         }
     };
 
@@ -71,7 +69,7 @@ const Register = () => {
                             />
                         </Grid>
                     </Grid>
-                    <Typography color='red'>{errorMessage}</Typography>
+                    <Typography color='red'>{errorRegister}</Typography>
                     <Button
                         type="submit"
                         fullWidth

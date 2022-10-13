@@ -1,15 +1,16 @@
 import { AccountCircle } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem } from '@mui/material';
-import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { auth } from '../config/firebase';
+import useUserStore, { selectOnLogout } from '../store/user';
 
 const UserLog = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+  const onLogout = useUserStore(selectOnLogout);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenu = (event) => {
@@ -20,13 +21,9 @@ const UserLog = () => {
     setAnchorEl(null);
   };
 
-  const onLogout = async () => {
-    try {
-      await signOut(auth);
-      navigate("/login");
-    } catch (err) {
-      console.log(err);
-    }
+  const handleLogout = async () => {
+    await onLogout();
+    navigate("/login");
   };
 
   return (user ?
@@ -57,7 +54,7 @@ const UserLog = () => {
         onClose={handleClose}
       >
         <MenuItem>{user.email}</MenuItem>
-        <MenuItem onClick={onLogout}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </> :
     <NavLink to={'/login'} key={'login'}
