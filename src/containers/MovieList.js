@@ -1,46 +1,28 @@
 import { Box, Button } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import tmdb from '../apis/tmdb';
 import MovieCard from '../components/MovieCard';
+import useMovieStore, { selectFetchMovies, selectMovies, selectMoviesReady, selectSortMovies } from '../store/movie';
 
 const MovieList = () => {
     const [queryParams, setQueryParams] = useSearchParams();
-    const [movies, setMovies] = useState([]);
-    const [moviesReady, setMoviesReady] = useState(false);
+    const movies = useMovieStore(selectMovies);
+    const fetchMovies = useMovieStore(selectFetchMovies);
+    const moviesReady = useMovieStore(selectMoviesReady);
+    const sortMovies = useMovieStore(selectSortMovies);
 
     useEffect(() => {
-        const fetchMovies = async () => {
-            try {
-                const fetchedMovies = await tmdb.get("trending/movie/week");
-                setMovies(fetchedMovies.data.results);
-                setMoviesReady(true);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
         fetchMovies();
     }, []);
 
     useEffect(() => {
         if (!moviesReady) return;
-        const sortMovies = (type) => {
-            if (type === 'asc') {
-                const sorted = [...movies].sort((a, b) => a.vote_average - b.vote_average);
-                setMovies(sorted);
-            }
-            if (type === 'desc') {
-                const sorted = [...movies].sort((a, b) => b.vote_average - a.vote_average);
-                setMovies(sorted);
-            }
-        }
 
         sortMovies(queryParams.get('sort'));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [queryParams, moviesReady]);
-    
+
     useEffect(() => {
         const nextPage = queryParams.get('page');
         console.log(nextPage);
@@ -53,7 +35,7 @@ const MovieList = () => {
         queryParams.set("sort", type);
         setQueryParams(queryParams);
     }
-    
+
     const setNextPage = (page) => {
         queryParams.set("page", page);
         setQueryParams(queryParams);
@@ -101,12 +83,12 @@ const MovieList = () => {
                 }
             </Box>
             <Button
-                    variant="contained"
-                    sx={{ ml: 2, mr: 2 }}
-                    onClick={() => setNextPage("2")}
-                >
-                    Load More
-                </Button>
+                variant="contained"
+                sx={{ ml: 2, mr: 2 }}
+                onClick={() => setNextPage("2")}
+            >
+                Load More
+            </Button>
             <div>Created by orang</div>
         </Box>
     );
