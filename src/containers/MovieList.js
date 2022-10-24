@@ -41,6 +41,15 @@ const MovieList = () => {
         queryParams.set("page", page);
         setQueryParams(queryParams);
     }
+    const SearchMovie = ({searchResult}) => {
+        const result = searchResult.map(movie => <MovieCard key = {movie.title} movie = {movie} />)
+
+        const content = result?.lenght ? result : <article><p>NMo MAtching Posts</p></article>
+
+        return (
+            <main>{content}</main>
+        )
+    }
 
     return (
         <Box sx={{
